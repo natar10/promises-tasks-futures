@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Navigate, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import * as Examples from '../examples'
 
 interface RouteAccess {
@@ -25,9 +25,9 @@ export const ROUTES: RouteAccess[] = [
     component: <Examples.Composable />,
   },
   {
-    name: 'Eager Evaluation',
-    path: '/eagerness',
-    component: <Examples.Eagerness />,
+    name: 'Short Circuit',
+    path: '/short-circuit',
+    component: <Examples.ShortCircuit />,
   },
   {
     name: 'Error Handling',

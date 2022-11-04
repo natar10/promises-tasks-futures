@@ -1,5 +1,5 @@
 import { Composable } from './Composable'
-import { Eagerness } from './Eagerness'
+import { ShortCircuit } from './ShortCircuit'
 import { Fluture } from './Fluture'
 import { Lazy } from './Lazy'
 import { Referencial } from './Referencial'
@@ -11,7 +11,7 @@ export {
   Lazy,
   Referencial,
   Composable,
-  Eagerness,
+  ShortCircuit,
   Fluture,
   RemoteData,
   ErrorHandling,
