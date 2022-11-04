@@ -15,6 +15,11 @@ export const ROUTES: RouteAccess[] = [
     component: <Examples.Lazy />,
   },
   {
+    name: 'Composable',
+    path: '/composable',
+    component: <Examples.Composable />,
+  },
+  {
     name: 'Referencial Transparency',
     path: '/referencial',
     component: <Examples.Referencial />,
@@ -28,11 +33,6 @@ export const ROUTES: RouteAccess[] = [
     name: 'Error Handling',
     path: '/error-handling',
     component: <Examples.ErrorHandling />,
-  },
-  {
-    name: 'Composable',
-    path: '/composable',
-    component: <Examples.Composable />,
   },
   {
     name: 'Remote Data',
@@ -50,7 +50,11 @@ export const RoutesComponent = (): JSX.Element => (
   <Routes>
     <Route path="/" element={<Examples.Home />}></Route>
     {ROUTES.map(route => (
-      <Route key={route.path} path={route.path} element={route.component} />
+      <Route
+        key={route.path}
+        path={route.path}
+        element={route.component}
+      />
     ))}
   </Routes>
 )

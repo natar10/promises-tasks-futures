@@ -1,7 +1,18 @@
 import * as React from 'react'
-import TopNavigation from '@cloudscape-design/components/top-navigation'
+import TopNavigation, {
+  TopNavigationProps,
+} from '@cloudscape-design/components/top-navigation'
+import { ROUTES } from '../components/Routes'
+import { useNavigate } from 'react-router-dom'
 
 export const NavBar = () => {
+  const navigate = useNavigate()
+  const links: TopNavigationProps.Utility[] = ROUTES.map(route => ({
+    type: 'button',
+    text: route.name,
+    external: false,
+    onClick: () => navigate(route.path),
+  }))
   return (
     <TopNavigation
       id="header"
@@ -9,14 +20,7 @@ export const NavBar = () => {
         href: '#',
         title: 'Are promises our only choice?',
       }}
-      utilities={[
-        {
-          type: 'button',
-          text: 'Link',
-          href: 'https://example.com/',
-          externalIconAriaLabel: ' (opens in a new tab)',
-        },
-      ]}
+      utilities={links}
       i18nStrings={{
         searchIconAriaLabel: 'Search',
         searchDismissIconAriaLabel: 'Close search',
