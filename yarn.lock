@@ -295,6 +295,11 @@
   dependencies:
     tslib "^2.4.0"
 
+"@devexperts/remote-data-ts@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@devexperts/remote-data-ts/-/remote-data-ts-2.1.1.tgz#feb6aba257c8b4c7478ee3f85ee95f717657e7c3"
+  integrity sha512-z0RblCmeQjYt0vM1g1qR2SzHM1FXZXpBEzokYAojN8n4yC2jIInngeggmqPTOZna2+i7HInDoDm0CGK50W7Llg==
+
 "@esbuild/android-arm@0.15.13":
   version "0.15.13"
   resolved "https://registry.yarnpkg.com/@esbuild/android-arm/-/android-arm-0.15.13.tgz#ce11237a13ee76d5eae3908e47ba4ddd380af86a"
@@ -713,6 +718,16 @@ has@^1.0.3:
   integrity sha512-f2dvO0VU6Oej7RkWJGrehjbzMAjFp5/VKPp5tTpWIV4JHHZK1/BxbFRtf/siA2SWTe09caDmVtYYzWEIbBS4zw==
   dependencies:
     function-bind "^1.1.1"
+
+io-ts-types@^0.5.19:
+  version "0.5.19"
+  resolved "https://registry.yarnpkg.com/io-ts-types/-/io-ts-types-0.5.19.tgz#9c04fa73f15992436605218a5686b610efa7a5d3"
+  integrity sha512-kQOYYDZG5vKre+INIDZbLeDJe+oM+4zLpUkjXyTMyUfoCpjJNyi29ZLkuEAwcPufaYo3yu/BsemZtbdD+NtRfQ==
+
+io-ts@^2.2.19:
+  version "2.2.19"
+  resolved "https://registry.yarnpkg.com/io-ts/-/io-ts-2.2.19.tgz#4ba5e120472a0a07ff693fdb3d7075ea1c1b77c3"
+  integrity sha512-ED0GQwvKRr5C2jqOOJCkuJW2clnbzqFexQ8V7Qsb+VB36S1Mk/OKH7k0FjSe4mjKy9qBRA3OqgVGyFMUEKIubw==
 
 is-core-module@^2.9.0:
   version "2.11.0"
