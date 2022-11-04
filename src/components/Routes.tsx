@@ -15,14 +15,14 @@ export const ROUTES: RouteAccess[] = [
     component: <Examples.Lazy />,
   },
   {
-    name: 'Composable',
-    path: '/composable',
-    component: <Examples.Composable />,
-  },
-  {
     name: 'Referencial Transparency',
     path: '/referencial',
     component: <Examples.Referencial />,
+  },
+  {
+    name: 'Composable',
+    path: '/composable',
+    component: <Examples.Composable />,
   },
   {
     name: 'Eager Evaluation',

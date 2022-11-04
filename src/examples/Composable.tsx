@@ -49,7 +49,7 @@ export const Composable = () => {
     )()
 
   return (
-    <Layout title="Laziness" subtitle="Lets see the difference">
+    <Layout title="Composable" subtitle="Lets see the difference">
       <ColumnLayout columns={2}>
         <Container>
           <h2>Promise</h2>
