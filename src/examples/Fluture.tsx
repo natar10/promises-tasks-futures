@@ -1,72 +1,71 @@
-import React from 'react'
-import { useState } from 'react'
-import * as T from 'fp-ts/lib/Task'
-import { GithubUser } from '../components/types'
+import React, { useState } from 'react'
+import Future, { fork, FutureInstance, Cancel } from 'fluture'
 import {
-  Alert,
   Box,
   Button,
   ColumnLayout,
   Container,
 } from '@cloudscape-design/components'
 import { Layout } from '../components/Layout'
-import { pipe } from 'fp-ts/lib/function'
-import { GITHUB_API } from '../utils/constants'
 
 export const Fluture = () => {
-  const [promiseUser, setPromiseUser] = useState<GithubUser>()
-  const [taskUser, setTaskUser] = useState<GithubUser>()
+  const [answer, setAnswer] = useState<string>()
+  const [cancel, setCancel] = useState<Cancel>()
 
-  //This is a normal promise definition
-  const normalPromise = fetch(`${GITHUB_API}/natar10`)
-    .then(response => response.json())
-    .then(data => setPromiseUser(data))
+  const eventualAnswer: FutureInstance<unknown, string> = Future(
+    function computeTheAnswer(rej, res) {
+      const timeoutId = setTimeout(res, 3000, '42')
+      return function onCancel() {
+        clearTimeout(timeoutId)
+        console.log('Canceled')
+      }
+    }
+  )
 
-  //This is a Task definition
-  const task: T.Task<GithubUser> = () =>
-    fetch(`${GITHUB_API}/stackbuilders`)
-      .then(response => response.json())
-      .then(data => data)
+  const runFuture = () => {
+    setAnswer('...')
+    return eventualAnswer.pipe(fork(console.error)(setAnswer))
+  }
 
-  const showTaskData = () => pipe(task, T.map(setTaskUser))()
+  const cancelFuture = () => {
+    if (cancel) cancel()
+    setAnswer('Canceled')
+  }
 
   return (
-    <Layout title="Laziness" subtitle="Lets see the difference">
+    <Layout
+      title="Fluture"
+      subtitle="I don't want that future anymore"
+    >
       <ColumnLayout columns={2}>
         <Container>
-          <h2>Promise</h2>
-          <p>The promise is called as soon as we load</p>
-          <Alert
-            type="warning"
-            visible
-            header="The promise is called as soon as we load"
-          />
-          {promiseUser && (
-            <ul>
-              <li>{promiseUser.name}</li>
-              <li>{promiseUser.created_at}</li>
-              <li>{promiseUser.id}</li>
-            </ul>
-          )}
+          <h2>Future</h2>
+          <p>The future is also lazy</p>
+          <p>Has most of the benefits of a TaskEither</p>
+          <p>But it can also be Cancelable</p>
+          <p>Promises are not Cancelable</p>
+          <h3>Result of the Future:</h3>
+          <h1 style={{ fontSize: '80px' }}>{answer}</h1>
         </Container>
         <Container>
-          <h2>fp-ts Task</h2>
-          <p>The task is called only when we decide to do it</p>
-          <Button onClick={showTaskData}>Run Task</Button>
-          {taskUser && (
-            <Box padding={{ top: 'l' }}>
-              <Alert
-                type="success"
-                visible
-                header="The task was called only when we decided to call it"
-              />
-              <ul>
-                <li>{taskUser.name}</li>
-                <li>{taskUser.created_at}</li>
-                <li>{taskUser.id}</li>
-              </ul>
-            </Box>
-          )}
+          <h2>Run the task here</h2>
+          <Box margin={{ bottom: 'xl' }}>
+            <Button
+              variant="primary"
+              onClick={() => setCancel(runFuture)}
+            >
+              Run Future
+            </Button>
+          </Box>
+          <Box>
+            <Button
+              disabled={cancel === undefined}
+              iconName="close"
+              onClick={cancelFuture}
+            >
+              Cancel Future
+            </Button>
+          </Box>
         </Container>
       </ColumnLayout>
     </Layout>
