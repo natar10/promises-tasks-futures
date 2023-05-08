@@ -17,12 +17,14 @@
     "@cloudscape-design/components": "^3.0.103",
     "@cloudscape-design/global-styles": "^1.0.1",
     "@devexperts/remote-data-ts": "^2.1.1",
+    "effect": "^2.0.0-next.13",
     "fluture": "^14.0.0",
     "fp-ts": "^2.13.1",
     "io-ts": "^2.2.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.3"
+    "react-router-dom": "^6.4.3",
+    "rxjs": "^7.8.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",

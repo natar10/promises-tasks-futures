@@ -5,6 +5,8 @@ import { Lazy } from './Lazy'
 import { Referencial } from './Referencial'
 import { RemoteData } from './RemoteData'
 import { ErrorHandling } from './ErrorHandling'
+import { Rxjs } from './Rxjs'
+import { Effect } from './Effect'
 import { Home } from './Home'
 
 export {
@@ -14,6 +16,8 @@ export {
   ShortCircuit,
   Fluture,
   RemoteData,
+  Effect,
+  Rxjs,
   ErrorHandling,
   Home,
 }

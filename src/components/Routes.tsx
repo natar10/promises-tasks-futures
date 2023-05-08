@@ -15,7 +15,7 @@ export const ROUTES: RouteAccess[] = [
     component: <Examples.Lazy />,
   },
   {
-    name: 'Referencial Transparency',
+    name: 'Ref. Transparency',
     path: '/referencial',
     component: <Examples.Referencial />,
   },
@@ -43,6 +43,16 @@ export const ROUTES: RouteAccess[] = [
     name: 'Fluture',
     path: '/fluture',
     component: <Examples.Fluture />,
+  },
+  {
+    name: 'Effect',
+    path: '/effect',
+    component: <Examples.Effect />,
+  },
+  {
+    name: 'RxJs',
+    path: '/rxjs',
+    component: <Examples.Rxjs />,
   },
 ]
 
