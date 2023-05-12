@@ -6,7 +6,7 @@ import { Referencial } from './Referencial'
 import { RemoteData } from './RemoteData'
 import { ErrorHandling } from './ErrorHandling'
 import { Rxjs } from './Rxjs'
-import { Effect } from './Effect'
+import { EffectTs } from './Effect'
 import { Home } from './Home'
 
 export {
@@ -16,7 +16,7 @@ export {
   ShortCircuit,
   Fluture,
   RemoteData,
-  Effect,
+  EffectTs,
   Rxjs,
   ErrorHandling,
   Home,

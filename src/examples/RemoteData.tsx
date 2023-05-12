@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import * as RD from '@devexperts/remote-data-ts'
 import * as T from 'fp-ts/lib/Task'
 import * as TE from 'fp-ts/lib/TaskEither'
-import { GithubRepo } from '../components/types'
+import { GithubRepo } from '../common/types'
 import {
   Alert,
   Box,

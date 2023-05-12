@@ -47,7 +47,7 @@ export const ROUTES: RouteAccess[] = [
   {
     name: 'Effect',
     path: '/effect',
-    component: <Examples.Effect />,
+    component: <Examples.EffectTs />,
   },
   {
     name: 'RxJs',

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import * as T from 'fp-ts/lib/Task'
 import * as TE from 'fp-ts/lib/TaskEither'
 import * as E from 'fp-ts/lib/Either'
-import { GithubRepo } from '../components/types'
+import { GithubRepo } from '../common/types'
 import {
   Alert,
   Box,

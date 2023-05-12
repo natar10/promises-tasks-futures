@@ -1,4 +1,4 @@
-import { boolean } from 'fp-ts'
+import * as Context from "@effect/data/Context";
 
 export interface GithubUser {
   login: string
@@ -23,10 +23,10 @@ export interface GithubUser {
   company: string
   blog: string
   location: string
-  email: string | string | null
-  hireable: string | string | null
-  bio: string | string | null
-  twitter_username: string | string | null
+  email: string | null
+  hireable: string | null
+  bio: string | null
+  twitter_username: string | null
   public_repos: number
   public_gists: number
   followers: number
@@ -139,3 +139,21 @@ export interface GithubRepo {
   watchers: number
   default_branch: string
 }
+
+export interface CustomRandom {
+  readonly next: () => number;
+}
+
+export const CustomRandomTag = Context.Tag<CustomRandom>();
+
+export interface Foo {
+  readonly foo: number;
+}
+
+export const FooTag = Context.Tag<Foo>();
+
+export interface Bar {
+  readonly bar: number;
+}
+
+export const BarTag = Context.Tag<Bar>();

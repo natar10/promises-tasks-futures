@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import * as T from 'fp-ts/lib/Task'
 import * as A from 'fp-ts/lib/Array'
-import { GithubRepo } from '../components/types'
+import { GithubRepo } from '../common/types'
 import {
   Alert,
   Box,

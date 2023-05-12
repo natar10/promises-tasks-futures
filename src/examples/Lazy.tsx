@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import * as T from 'fp-ts/lib/Task'
-import { GithubUser } from '../components/types'
+import { GithubUser } from '../common/types'
 import {
   Alert,
   Box,

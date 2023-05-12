@@ -9,7 +9,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prettier:write": "prettier --write **",
-    "prettier:check": "prettier --check **"
+    "prettier:check": "prettier --check **",
+    "gen-zod": "ts-to-zod src/common/types.ts src/common/zodSchemas.ts"
   },
   "author": "NR",
   "license": "MIT",
@@ -17,20 +18,24 @@
     "@cloudscape-design/components": "^3.0.103",
     "@cloudscape-design/global-styles": "^1.0.1",
     "@devexperts/remote-data-ts": "^2.1.1",
-    "effect": "^2.0.0-next.13",
+    "@effect/data": "^0.12.2",
+    "@effect/io": "^0.25.9",
+    "@effect/match": "0.22.0",
     "fluture": "^14.0.0",
     "fp-ts": "^2.13.1",
-    "io-ts": "^2.2.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "ts-to-zod": "^3.0.0",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "@vitejs/plugin-react": "^2.2.0",
     "io-ts-types": "^0.5.19",
+    "io-ts": "^2.2.19",
     "prettier": "^2.7.1",
     "typescript": "^4.6.4",
     "vite": "^3.2.1"

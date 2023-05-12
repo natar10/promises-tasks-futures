@@ -10,7 +10,7 @@ import { Layout } from '../components/Layout'
 import { map, Subscription, switchMap, tap, retry, Subject } from 'rxjs';
 import { fromFetch } from 'rxjs/fetch';
 import { GITHUB_API } from '../utils/constants';
-import { GithubRepo, GithubUser } from '../components/types';
+import { GithubRepo, GithubUser } from '../common/types';
 
 export const Rxjs = () => {
     const [answer, setAnswer] = useState<GithubUser>()
