@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import * as T from 'fp-ts/lib/Task'
 import { GithubUser } from '../common/types'
@@ -18,9 +18,9 @@ export const Lazy = () => {
   const [taskUser, setTaskUser] = useState<GithubUser>()
 
   //This is a normal promise definition
-  const normalPromise = fetch(`${GITHUB_API}/natar10`)
-    .then(response => response.json())
-    .then(data => setPromiseUser(data))
+  // const normalPromise = fetch(`${GITHUB_API}/natar10`)
+  //   .then(response => response.json())
+  //   .then(data => setPromiseUser(data))
 
   //This is a Task definition
   const task: T.Task<GithubUser> = () =>
@@ -29,6 +29,12 @@ export const Lazy = () => {
       .then(data => data)
 
   const showTaskData = () => pipe(task, T.map(setTaskUser))()
+
+  useEffect(() => {
+    fetch(`${GITHUB_API}/natar10`)
+      .then(response => response.json())
+      .then(data => setPromiseUser(data))
+  }, [])
 
   return (
     <Layout title="Laziness" subtitle="Lets see the difference">
@@ -71,5 +77,4 @@ export const Lazy = () => {
       </ColumnLayout>
     </Layout>
   )
-  return <h1>Lazy</h1>
 }

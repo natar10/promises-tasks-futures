@@ -70,5 +70,4 @@ export const Fluture = () => {
       </ColumnLayout>
     </Layout>
   )
-  return <h1>Lazy</h1>
 }

@@ -97,5 +97,4 @@ export const Composable = () => {
       </ColumnLayout>
     </Layout>
   )
-  return <h1>Lazy</h1>
 }

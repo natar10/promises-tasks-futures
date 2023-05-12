@@ -144,5 +144,4 @@ export const ErrorHandling = () => {
       </Box>
     </Layout>
   )
-  return <h1>Lazy</h1>
 }

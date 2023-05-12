@@ -20,17 +20,17 @@ export const ShortCircuit = () => {
    */
   const delayTask =
     (millis: number) =>
-    (value: number): TE.TaskEither<string, number> =>
-      TE.tryCatch(
-        () =>
-          new Promise(resolve =>
-            setTimeout(() => {
-              console.log(`evaluating ${value}`)
-              resolve(value)
-            }, millis)
-          ),
-        () => 'error'
-      )
+      (value: number): TE.TaskEither<string, number> =>
+        TE.tryCatch(
+          () =>
+            new Promise(resolve =>
+              setTimeout(() => {
+                console.log(`evaluating ${value}`)
+                resolve(value)
+              }, millis)
+            ),
+          () => 'error'
+        )
 
   const taskArray = [
     delayTask(1000)(1),
@@ -53,13 +53,13 @@ export const ShortCircuit = () => {
    */
   const delayPromise =
     (millis: number) =>
-    (value: number): Promise<number> =>
-      new Promise(resolve =>
-        setTimeout(() => {
-          console.log(`evaluating ${value}`)
-          resolve(value)
-        }, millis)
-      )
+      (value: number): Promise<number> =>
+        new Promise(resolve =>
+          setTimeout(() => {
+            console.log(`evaluating ${value}`)
+            resolve(value)
+          }, millis)
+        )
 
   const resultPromise = (): Promise<void> =>
     Promise.all([
@@ -101,5 +101,4 @@ export const ShortCircuit = () => {
       </ColumnLayout>
     </Layout>
   )
-  return <h1>Lazy</h1>
 }
