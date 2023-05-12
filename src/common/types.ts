@@ -12,17 +12,17 @@ export interface GithubUser {
   following_url: string
   gists_url: string
   starred_url: string
-  subscriptions_url: string
-  organizations_url: string
+  subscriptions_url: string | null
+  organizations_url: string | null
   repos_url: string
-  events_url: string
+  events_url: string | null
   received_events_url: string
   type: string
   site_admin: boolean
   name: string
-  company: string
-  blog: string
-  location: string
+  company: string | null
+  blog: string | null
+  location: string | null
   email: string | null
   hireable: string | null
   bio: string | null
@@ -32,6 +32,7 @@ export interface GithubUser {
   followers: number
   following: number
   created_at: string
+  updated_at: string
 }
 
 export interface GithubRepo {
@@ -138,6 +139,11 @@ export interface GithubRepo {
   open_issues: number
   watchers: number
   default_branch: string
+}
+
+export interface UserNumbers {
+  name: string,
+  public_repos: number
 }
 
 export interface CustomRandom {

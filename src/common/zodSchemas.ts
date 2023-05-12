@@ -13,17 +13,17 @@ export const githubUserSchema = z.object({
   following_url: z.string(),
   gists_url: z.string(),
   starred_url: z.string(),
-  subscriptions_url: z.string(),
-  organizations_url: z.string(),
+  subscriptions_url: z.string().nullable(),
+  organizations_url: z.string().nullable(),
   repos_url: z.string(),
-  events_url: z.string(),
+  events_url: z.string().nullable(),
   received_events_url: z.string(),
   type: z.string(),
   site_admin: z.boolean(),
   name: z.string(),
-  company: z.string(),
-  blog: z.string(),
-  location: z.string(),
+  company: z.string().nullable(),
+  blog: z.string().nullable(),
+  location: z.string().nullable(),
   email: z.string().nullable(),
   hireable: z.string().nullable(),
   bio: z.string().nullable(),
@@ -33,6 +33,7 @@ export const githubUserSchema = z.object({
   followers: z.number(),
   following: z.number(),
   created_at: z.string(),
+  updated_at: z.string(),
 })
 
 export const githubRepoSchema = z.object({
@@ -139,4 +140,21 @@ export const githubRepoSchema = z.object({
   open_issues: z.number(),
   watchers: z.number(),
   default_branch: z.string(),
+})
+
+export const userNumbersSchema = z.object({
+  name: z.string(),
+  public_repos: z.number(),
+})
+
+export const customRandomSchema = z.object({
+  next: z.function().args().returns(z.number()),
+})
+
+export const fooSchema = z.object({
+  foo: z.number(),
+})
+
+export const barSchema = z.object({
+  bar: z.number(),
 })
