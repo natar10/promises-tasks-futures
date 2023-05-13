@@ -22,7 +22,7 @@ export const Lazy = () => {
   //   .then(response => response.json())
   //   .then(data => setPromiseUser(data))
 
-  //This is a Task definition
+  //This is a Task definition. It is Lazy promise
   const task: T.Task<GithubUser> = () =>
     fetch(`${GITHUB_API}/stackbuilders`)
       .then(response => response.json())
@@ -31,6 +31,7 @@ export const Lazy = () => {
   const showTaskData = () => pipe(task, T.map(setTaskUser))()
 
   useEffect(() => {
+    //As this is using react we place the promise in a useEffect to avoid calling it forever
     fetch(`${GITHUB_API}/natar10`)
       .then(response => response.json())
       .then(data => setPromiseUser(data))
@@ -50,8 +51,8 @@ export const Lazy = () => {
           {promiseUser && (
             <ul>
               <li>{promiseUser.name}</li>
-              <li>{promiseUser.created_at}</li>
-              <li>{promiseUser.id}</li>
+              <li>{promiseUser.company}</li>
+              <li>{promiseUser.location}</li>
             </ul>
           )}
         </Container>
@@ -68,8 +69,8 @@ export const Lazy = () => {
               />
               <ul>
                 <li>{taskUser.name}</li>
-                <li>{taskUser.created_at}</li>
-                <li>{taskUser.id}</li>
+                <li>{taskUser.company}</li>
+                <li>{taskUser.location}</li>
               </ul>
             </Box>
           )}

@@ -1,5 +1,6 @@
 {
   "name": "promises",
+  "type": "commonjs",
   "version": "1.0.0",
   "description": "Are promises our only choice?",
   "main": "index.ts",
@@ -31,13 +32,18 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.0.0",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "@vitejs/plugin-react": "^2.2.0",
-    "io-ts-types": "^0.5.19",
     "io-ts": "^2.2.19",
+    "io-ts-types": "^0.5.19",
+    "msw": "^1.2.1",
     "prettier": "^2.7.1",
     "typescript": "^4.6.4",
     "vite": "^3.2.1"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

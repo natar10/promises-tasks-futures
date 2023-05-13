@@ -129,7 +129,7 @@ export interface GithubRepo {
     spdx_id: string
     url: string | null
     node_id: string
-  }
+  } | null
   allow_forking: boolean
   is_template: boolean
   web_commit_signoff_required: boolean
