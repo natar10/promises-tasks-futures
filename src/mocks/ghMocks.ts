@@ -18,7 +18,7 @@ export const mockUser: GithubUser = {
     repos_url: faker.internet.url(),
     events_url: faker.internet.url(),
     received_events_url: faker.internet.url(),
-    type: ["User", "Organization"][faker.number.int({ min: 0, max: 2 })],
+    type: ["User", "Organization"][faker.number.int({ min: 0, max: 1 })],
     site_admin: false,
     name: faker.person.fullName(),
     company: faker.company.name(),
@@ -37,14 +37,14 @@ export const mockUser: GithubUser = {
 }
 
 const githubRepo = (): GithubRepo => ({
-    id: parseInt(faker.string.uuid()),
+    id: faker.number.int(),
     node_id: faker.string.uuid(),
-    name: faker.git.branch.name,
+    name: faker.music.songName(),
     full_name: faker.git.branch.name,
     private: false,
     owner: {
         login: faker.internet.userName(),
-        id: parseInt(faker.string.uuid()),
+        id: faker.number.int(),
         node_id: faker.string.uuid(),
         avatar_url: faker.internet.url(),
         gravatar_id: faker.string.uuid(),
@@ -59,7 +59,7 @@ const githubRepo = (): GithubRepo => ({
         repos_url: faker.internet.url(),
         events_url: faker.internet.url(),
         received_events_url: faker.internet.url(),
-        type: ["User", "Organization"][faker.number.int({ min: 0, max: 2 })],
+        type: ["User", "Organization"][faker.number.int({ min: 0, max: 1 })],
         site_admin: false
     },
     html_url: faker.internet.url(),
@@ -113,7 +113,7 @@ const githubRepo = (): GithubRepo => ({
     size: faker.number.int({ min: 1000, max: 3000 }),
     stargazers_count: faker.number.int({ min: 0, max: 100 }),
     watchers_count: faker.number.int({ min: 0, max: 100 }),
-    language: "C++",
+    language: ["JavaScript", "C++", "TypeScript"][faker.number.int({ min: 0, max: 2 })],
     has_issues: true,
     has_projects: true,
     has_downloads: true,
@@ -129,11 +129,11 @@ const githubRepo = (): GithubRepo => ({
     is_template: false,
     web_commit_signoff_required: false,
     topics: [],
-    visibility: ["public", "private"][faker.number.int({ min: 0, max: 2 })],
+    visibility: ["public", "private"][faker.number.int({ min: 0, max: 1 })],
     forks: 0,
     open_issues: 0,
     watchers: 0,
     default_branch: "main"
 })
 
-export const mockRepos = [...Array(faker.number.int({ min: 0, max: 5 })).keys()].map(_ => githubRepo())
+export const mockRepos = [...Array(faker.number.int({ min: 3, max: 5 })).keys()].map(_ => githubRepo())

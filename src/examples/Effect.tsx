@@ -13,11 +13,12 @@ import {
 import { Layout } from '../components/Layout'
 import { GITHUB_API } from '../utils/constants';
 import { BadJson, BadRequest, InvalidGithubUser, isUser, OnlyUserAllowed, parseGithubUser } from '../common/decode'
-import { GithubUser, UserNumbers } from '../common/types';
+import { GithubUser } from '../common/types';
 
 export const EffectTs = () => {
   const [answer, setAnswer] = useState<string>('')
 
+  //Here we create that Effect, fetch the API, get the JSON and parse/validate the JSON data
   const fetchUser = (user: string): Effect.Effect<never, BadRequest | BadJson | InvalidGithubUser, GithubUser> => pipe(
     Effect.tryCatchPromise(
       () => fetch(`${GITHUB_API}/${user}`),
@@ -60,10 +61,10 @@ export const EffectTs = () => {
 
   const effects = ['natar10', 'stackbuilders', 'Effect-TS'].map(fetchUser);
 
-  const example4 = Effect.gen(function* ($) {
+  const getUserNames = Effect.gen(function* ($) {
     // Here we can resolve the async operations in parallel and we get an array of the final value
-    const ids = yield* $(Effect.allPar(effects));
-    setAnswer(ids.reduce((acc, a) => `${a.name} - ${acc}`, ''));
+    const users = yield* $(Effect.allPar(effects));
+    setAnswer(users.reduce((acc, a) => `${a.name} - ${acc}`, ''));
 
     // Here instead we can only collect the operations that actually return something
     // We turn it into an optional and collectAllPar collects only the elements where effect return a some
@@ -104,7 +105,7 @@ export const EffectTs = () => {
           <Box margin={{ bottom: 'xl' }}>
             <Button
               variant="primary"
-              onClick={() => Effect.runPromise(example4)}
+              onClick={() => Effect.runPromise(getUserNames)}
             >
               Run Effect
             </Button>

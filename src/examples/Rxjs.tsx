@@ -75,7 +75,7 @@ export const Rxjs = () => {
                     <p>You can create streams</p>
                     <p>Compose functions</p>
                     <h3>Result of the Observable:</h3>
-                    <h1 style={{ fontSize: '80px' }}>{answer?.name}</h1>
+                    <h1 style={{ fontSize: '40px' }}>{answer?.name}</h1>
                 </Container>
                 <Container>
                     <h2>Run the observable here</h2>
@@ -118,18 +118,18 @@ export const Rxjs = () => {
                     <ColumnLayout columns={2}>
                         <Box>
                             {stars?.length > 0 &&
-                                <>
+                                <ul>
                                     <h3>Repos with more than 5 stars</h3>
-                                    {stars.map(repo => <Link href={repo.url}>{repo.name} {repo.stargazers_count} stars</Link>)}
-                                </>
+                                    {stars.map(repo => <li><Link key={repo.id} href={repo.url}>{repo.name}</Link> ({repo.stargazers_count} stars)</li>)}
+                                </ul>
                             }
                         </Box>
                         <Box>
                             {stars?.length > 0 &&
-                                <>
+                                <ul>
                                     <h3>Repos with more than 5 forks</h3>
-                                    {forked.map(repo => <Link href={repo.url}>{repo.name} {repo.forks_count} forks</Link>)}
-                                </>
+                                    {forked.map(repo => <li><Link key={repo.id} href={repo.url}>{repo.name}</Link> ({repo.forks_count} forks)</li>)}
+                                </ul>
                             }
                         </Box>
                     </ColumnLayout>

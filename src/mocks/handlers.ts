@@ -1,6 +1,6 @@
 // src/mocks/handlers.js
 import { rest } from 'msw'
-import { GITHUB_API } from '../utils/constants'
+import { FAIL_GITHUB_API, GITHUB_API } from '../utils/constants'
 import { mockUser, mockRepos } from './ghMocks'
 
 export const handlers = [
@@ -16,4 +16,7 @@ export const handlers = [
       ctx.json(mockRepos)
     )
   }),
+  rest.get(`${FAIL_GITHUB_API}/failed`, (req, res, ctx) => {
+    return res(ctx.status(404, 'You API is bad'))
+  })
 ]

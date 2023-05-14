@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import * as T from 'fp-ts/lib/Task'
 import * as A from 'fp-ts/lib/Array'
@@ -18,15 +18,16 @@ export const Composable = () => {
   const [promiseRepo, setPromiseRepos] = useState<string[]>([])
   const [taskRepos, setTaskRepos] = useState<string[]>([])
 
-  const normalPromise = (): Promise<GithubRepo[]> =>
-    fetch(`${GITHUB_API}/natar10/repos`).then(res => res.json())
-
-  // In order to map over the return value, we would need to wrap it in a thunk anyways
-  normalPromise().then(data => {
-    setPromiseRepos(
-      data.filter(r => r.language === 'JavaScript').map(r => r.name)
-    )
-  })
+  useEffect(() => {
+    // In order to map over the return value, we would need to wrap it in a thunk anyways
+    fetch(`${GITHUB_API}/natar10/repos`)
+      .then(res => res.json())
+      .then((data: GithubRepo[]) => {
+        setPromiseRepos(
+          data.filter(r => ['JavaScript', "C++"].includes(r.language)).map(r => r.name)
+        )
+      })
+  }, [])
 
   //We create the Task
   const task: T.Task<GithubRepo[]> = () =>

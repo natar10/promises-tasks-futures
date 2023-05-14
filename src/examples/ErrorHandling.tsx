@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import * as T from 'fp-ts/lib/Task'
+import React, { useState } from 'react'
 import * as TE from 'fp-ts/lib/TaskEither'
 import * as E from 'fp-ts/lib/Either'
 import { GithubRepo } from '../common/types'
@@ -12,7 +11,7 @@ import {
 } from '@cloudscape-design/components'
 import { Layout } from '../components/Layout'
 import { flow, pipe } from 'fp-ts/lib/function'
-import { GITHUB_API } from '../utils/constants'
+import { FAIL_GITHUB_API, GITHUB_API } from '../utils/constants'
 
 export const ErrorHandling = () => {
   const [response, setResponse] = useState<
@@ -23,13 +22,16 @@ export const ErrorHandling = () => {
     GithubRepo[]
   >([])
 
+  /**
+   * Task definitions
+   */
   const successRequest = TE.tryCatch<Error, Response>(
     () => fetch(`${GITHUB_API}/natar10/repos`),
     () => new Error('The request failed')
   )
 
   const failedRequest = TE.tryCatch<Error, Response>(
-    () => fetch(`xxxxnatar10/repos`),
+    () => fetch(`${FAIL_GITHUB_API}/failed`),
     () => new Error('The request failed')
   )
 
@@ -57,7 +59,7 @@ export const ErrorHandling = () => {
   }
 
   const failedPromise = () => {
-    fetch(`natar10/repos`)
+    fetch(`${FAIL_GITHUB_API}/failed`)
       .then(r => r.json())
       .then(res => setPromiseResponse(res))
       .catch(e => console.log(e))

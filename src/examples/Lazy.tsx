@@ -50,9 +50,9 @@ export const Lazy = () => {
           />
           {promiseUser && (
             <ul>
-              <li>{promiseUser.name}</li>
-              <li>{promiseUser.company}</li>
-              <li>{promiseUser.location}</li>
+              <li>Name: {promiseUser.name}</li>
+              <li>Company: {promiseUser.company}</li>
+              <li>Location: {promiseUser.location}</li>
             </ul>
           )}
         </Container>
@@ -68,9 +68,9 @@ export const Lazy = () => {
                 header="The task was called only when we decided to call it"
               />
               <ul>
-                <li>{taskUser.name}</li>
-                <li>{taskUser.company}</li>
-                <li>{taskUser.location}</li>
+                <li>Name: {taskUser.name}</li>
+                <li>Company: {taskUser.company}</li>
+                <li>Location: {taskUser.location}</li>
               </ul>
             </Box>
           )}
