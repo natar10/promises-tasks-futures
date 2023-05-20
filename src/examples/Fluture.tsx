@@ -14,7 +14,7 @@ export const Fluture = () => {
 
   const eventualAnswer: FutureInstance<unknown, string> = Future(
     function computeTheAnswer(rej, res) {
-      const timeoutId = setTimeout(res, 3000, '42')
+      const timeoutId = setTimeout(res, 3000, 'Future fulfilled!')
       return function onCancel() {
         clearTimeout(timeoutId)
         console.log('Canceled')
@@ -22,7 +22,7 @@ export const Fluture = () => {
     }
   )
 
-  const runFuture = () => {
+  const runFuture = (): Cancel => {
     setAnswer('...')
     return eventualAnswer.pipe(fork(console.error)(setAnswer))
   }

@@ -25,18 +25,18 @@ export const ShortCircuit = () => {
    */
   const delayPromise =
     (millis: number) =>
-      (value: number): Promise<number> =>
-        new Promise(resolve =>
-          setTimeout(() => {
-            setPromiseEval(`Evaluating Promise ${value}`)
-            resolve(value)
-          }, millis)
-        )
+    (value: number): Promise<number> =>
+      new Promise(resolve =>
+        setTimeout(() => {
+          setPromiseEval(`Evaluating Promise ${value}`)
+          resolve(value)
+        }, millis)
+      )
 
   //Add all the promises into an array and run them with Promise.all
   const resultPromise = (): Promise<void> =>
     Promise.all([
-      delayPromise(1000)(1),
+      delayPromise(2000)(1),
       delayPromise(2000)(2),
       Promise.reject('short circuit'),
       delayPromise(3000)(3),
@@ -50,17 +50,17 @@ export const ShortCircuit = () => {
    */
   const delayTask =
     (millis: number) =>
-      (value: number): TE.TaskEither<string, number> =>
-        TE.tryCatch(
-          () =>
-            new Promise(resolve =>
-              setTimeout(() => {
-                setTaskEval(`Evaluating Task ${value}`)
-                resolve(value)
-              }, millis)
-            ),
-          () => 'error'
-        )
+    (value: number): TE.TaskEither<string, number> =>
+      TE.tryCatch(
+        () =>
+          new Promise(resolve =>
+            setTimeout(() => {
+              setTaskEval(`Evaluating Task ${value}`)
+              resolve(value)
+            }, millis)
+          ),
+        () => 'error'
+      )
 
   const taskArray = [
     delayTask(1000)(1),
@@ -92,11 +92,18 @@ export const ShortCircuit = () => {
             Run Promise
           </Button>
 
-          {promiseAll && <Box margin="l">
-            <h3>{promiseEval}</h3>
-            <Alert type={promiseAll} visible header="Promise all ran">With {promiseAll}</Alert>
-          </Box>}
-
+          {promiseAll && (
+            <Box margin="l">
+              <h3>{promiseEval}</h3>
+              <Alert
+                type={promiseAll}
+                visible
+                header="Promise all ran"
+              >
+                With {promiseAll}
+              </Alert>
+            </Box>
+          )}
         </Container>
         <Container>
           <h2>fp-ts Task</h2>
@@ -112,9 +119,16 @@ export const ShortCircuit = () => {
 
           <Box margin="l">
             <h3>{taskEval}</h3>
-            {sequenceTask && <Alert type={sequenceTask} visible header="Promise all ran">With {sequenceTask}</Alert>}
+            {sequenceTask && (
+              <Alert
+                type={sequenceTask}
+                visible
+                header="Promise all ran"
+              >
+                With {sequenceTask}
+              </Alert>
+            )}
           </Box>
-
         </Container>
       </ColumnLayout>
     </Layout>

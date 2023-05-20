@@ -19,12 +19,15 @@ export const Composable = () => {
   const [taskRepos, setTaskRepos] = useState<string[]>([])
 
   useEffect(() => {
-    // In order to map over the return value, we would need to wrap it in a thunk anyways
+    // In order to map over the return value,
+    // we would need to wrap it in a thunk anyways
     fetch(`${GITHUB_API}/natar10/repos`)
       .then(res => res.json())
       .then((data: GithubRepo[]) => {
         setPromiseRepos(
-          data.filter(r => ['JavaScript', "C++"].includes(r.language)).map(r => r.name)
+          data
+            .filter(r => ['JavaScript', 'C++'].includes(r.language))
+            .map(r => r.name)
         )
       })
   }, [])
@@ -36,18 +39,21 @@ export const Composable = () => {
     )
 
   //With out having to extract the data with another thunk we can start maping or manipulating
-  //the data acording to what the function needs
-  const showTaskData = () =>
+  //the data according to what the function needs
+  const getRepoNames = (): T.Task<string[]> =>
     pipe(
       task,
+      T.delay(1000),
       T.map(
         flow(
-          A.filter(r => r.language === 'JavaScript'),
-          A.map(r => r.name),
-          setTaskRepos
+          A.filter(r => ['JavaScript', 'C++'].includes(r.language)),
+          A.map(r => r.name)
         )
       )
-    )()
+    )
+
+  const showTaskData = () =>
+    pipe(getRepoNames(), T.map(setPromiseRepos))()
 
   return (
     <Layout title="Composable" subtitle="Lets see the difference">

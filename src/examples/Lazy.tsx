@@ -20,7 +20,7 @@ export const Lazy = () => {
   //This is a normal promise definition
   // const normalPromise = fetch(`${GITHUB_API}/natar10`)
   //   .then(response => response.json())
-  //   .then(data => setPromiseUser(data))
+  //   .then(data => data)
 
   //This is a Task definition. It is Lazy promise
   const task: T.Task<GithubUser> = () =>

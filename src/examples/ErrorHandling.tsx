@@ -23,32 +23,6 @@ export const ErrorHandling = () => {
   >([])
 
   /**
-   * Task definitions
-   */
-  const successRequest = TE.tryCatch<Error, Response>(
-    () => fetch(`${GITHUB_API}/natar10/repos`),
-    () => new Error('The request failed')
-  )
-
-  const failedRequest = TE.tryCatch<Error, Response>(
-    () => fetch(`${FAIL_GITHUB_API}/failed`),
-    () => new Error('The request failed')
-  )
-
-  const runTask = (request: TE.TaskEither<Error, Response>) => {
-    pipe(
-      request,
-      TE.chain(a =>
-        TE.tryCatch<Error, GithubRepo[]>(
-          () => a.json() as Promise<GithubRepo[]>,
-          () => new Error('Failed to parse JSON payload')
-        )
-      ),
-      TE.match(flow(E.left, setResponse), flow(E.right, setResponse))
-    )()
-  }
-
-  /**
    * Promise definitions
    */
 
@@ -64,6 +38,34 @@ export const ErrorHandling = () => {
       .then(res => setPromiseResponse(res))
       .catch(e => console.log(e))
   }
+
+  /**
+   * Task definitions
+   */
+  const successRequest = TE.tryCatch<Error, Response>(
+    () => fetch(`${GITHUB_API}/natar10/repos`),
+    () => new Error('The request failed')
+  )
+
+  const failedRequest = TE.tryCatch<Error, Response>(
+    () => fetch(`${FAIL_GITHUB_API}/failed`),
+    () => new Error('The request failed')
+  )
+
+  const runTask = (request: TE.TaskEither<Error, Response>) =>
+    pipe(
+      request,
+      TE.chain(a =>
+        TE.tryCatch<Error, GithubRepo[]>(
+          () => a.json() as Promise<GithubRepo[]>,
+          () => new Error('Failed to parse JSON payload')
+        )
+      ),
+      TE.match(
+        e => TE.fromIO(() => setResponse(E.left(e))),
+        r => TE.fromIO(() => setResponse(E.right(r)))
+      )
+    )()
 
   return (
     <Layout title="Error Handling" subtitle="Lets see the difference">
