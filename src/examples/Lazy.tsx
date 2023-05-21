@@ -31,7 +31,6 @@ export const Lazy = () => {
   const showTaskData = () => pipe(task, T.map(setTaskUser))()
 
   useEffect(() => {
-    //As this is using react we place the promise in a useEffect to avoid calling it forever
     fetch(`${GITHUB_API}/natar10`)
       .then(response => response.json())
       .then(data => setPromiseUser(data))

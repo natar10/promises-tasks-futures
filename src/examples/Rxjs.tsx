@@ -14,6 +14,7 @@ import {
   tap,
   retry,
   Subject,
+  delay,
 } from 'rxjs'
 import { fromFetch } from 'rxjs/fetch'
 import { GITHUB_API } from '../utils/constants'
@@ -31,6 +32,7 @@ export const Rxjs = () => {
     `${GITHUB_API}/natar10`
   ).pipe(
     switchMap(r => r.json()),
+    delay(3000),
     map(setAnswer)
   )
   const subscribeObservable = (): Subscription =>
@@ -52,6 +54,7 @@ export const Rxjs = () => {
   //As similar as the futures we can "cancel" unsubscribe from an observable
   const cancelObservable = () => {
     subscriber?.unsubscribe()
+    console.log('Canceled')
   }
 
   //Subject
