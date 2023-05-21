@@ -129,7 +129,7 @@ export const EffectTs = () => {
   )
   const chunkEffects = pipe(
     Effect.allPar(manyManyEffects),
-    Effect.withParallelism(2)
+    Effect.withParallelism(4)
   )
 
   return (

@@ -61,10 +61,7 @@ export const ErrorHandling = () => {
           () => new Error('Failed to parse JSON payload')
         )
       ),
-      TE.match(
-        e => TE.fromIO(() => setResponse(E.left(e))),
-        r => TE.fromIO(() => setResponse(E.right(r)))
-      )
+      TE.match(flow(E.left, setResponse), flow(E.right, setResponse))
     )()
 
   return (

@@ -14,7 +14,7 @@ export const Fluture = () => {
 
   const eventualAnswer: FutureInstance<unknown, string> = Future(
     function computeTheAnswer(rej, res) {
-      const timeoutId = setTimeout(res, 3000, 'Future fulfilled!')
+      const timeoutId = setTimeout(res, 3000, 'Fulfilled!')
       return function onCancel() {
         clearTimeout(timeoutId)
         console.log('Canceled')

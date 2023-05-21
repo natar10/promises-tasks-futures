@@ -53,7 +53,7 @@ export const Composable = () => {
     )
 
   const showTaskData = () =>
-    pipe(getRepoNames(), T.map(setPromiseRepos))()
+    pipe(getRepoNames(), T.map(setTaskRepos))()
 
   return (
     <Layout title="Composable" subtitle="Lets see the difference">
