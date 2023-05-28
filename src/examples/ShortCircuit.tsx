@@ -70,7 +70,7 @@ export const ShortCircuit = () => {
     delayTask(1500)(4),
   ]
 
-  const result = (): Promise<void> =>
+  const result = () =>
     pipe(
       taskArray,
       A.sequence(TE.taskEitherSeq),
