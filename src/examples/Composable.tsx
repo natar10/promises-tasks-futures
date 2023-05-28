@@ -19,8 +19,12 @@ export const Composable = () => {
   const [taskRepos, setTaskRepos] = useState<string[]>([])
 
   useEffect(() => {
-    // In order to map over the return value,
-    // we would need to wrap it in a thunk anyways
+    /**
+     * To execute composition in a promise:
+     * To map over the return value,
+     * we would need to wrap it in a thunk anyways
+     * and the side effect need to be performed inside the resolution
+     */
     fetch(`${GITHUB_API}/natar10/repos`)
       .then(res => res.json())
       .then((data: GithubRepo[]) => {
@@ -32,13 +36,13 @@ export const Composable = () => {
       })
   }, [])
 
-  //We create the Task
+  //For the case of the task, we can create it:
   const task: T.Task<GithubRepo[]> = () =>
     fetch(`${GITHUB_API}/stackbuilders/repos`).then(response =>
       response.json()
     )
 
-  //With out having to extract the data with another thunk we can start maping or manipulating
+  //With out having to extract the data with another thunk we can start mapping or manipulating
   //the data according to what the function needs
   const getRepoNames = (): T.Task<string[]> =>
     pipe(
@@ -52,6 +56,7 @@ export const Composable = () => {
       )
     )
 
+  //We can also keep the side effect at the edge of the app
   const showTaskData = () =>
     pipe(getRepoNames(), T.map(setTaskRepos))()
 
@@ -63,11 +68,10 @@ export const Composable = () => {
           <p>The promise is called as soon as we load</p>
           <Alert
             type="warning"
-            visible
             header="The promise is called as soon as we load"
           >
             <p>
-              But if we dont extract the data from it there is no way
+              But if we don't extract the data from it there is no way
               to compose the data in advance.
             </p>
             <p>
@@ -89,10 +93,8 @@ export const Composable = () => {
             <Box padding={{ top: 'l' }}>
               <Alert
                 type="success"
-                visible
-                header="The task was called only when we decided to call it"
+                header="The task was called only when we decided to call it and after making the composition"
               />
-
               <ul>
                 {taskRepos.map(repoName => (
                   <li key={repoName}>{repoName}</li>

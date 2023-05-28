@@ -17,7 +17,10 @@ export const Lazy = () => {
   const [promiseUser, setPromiseUser] = useState<GithubUser>()
   const [taskUser, setTaskUser] = useState<GithubUser>()
 
-  //This is a normal promise definition
+  /**
+   * This is something that you can't do with a promise
+   * Cause it will eager evaluated and you only get the value in the resolution:
+   */
   // const normalPromise = fetch(`${GITHUB_API}/natar10`)
   //   .then(response => response.json())
   //   .then(data => data)
@@ -28,9 +31,11 @@ export const Lazy = () => {
       .then(response => response.json())
       .then(data => data)
 
+  //You can execute the side effect at the edge of the app
   const showTaskData = () => pipe(task, T.map(setTaskUser))()
 
   useEffect(() => {
+    //This is usual and normal promise definition
     fetch(`${GITHUB_API}/natar10`)
       .then(response => response.json())
       .then(data => setPromiseUser(data))
@@ -44,7 +49,6 @@ export const Lazy = () => {
           <p>The promise is called as soon as we load</p>
           <Alert
             type="warning"
-            visible
             header="The promise is called as soon as we load"
           />
           {promiseUser && (
@@ -63,7 +67,6 @@ export const Lazy = () => {
             <Box padding={{ top: 'l' }}>
               <Alert
                 type="success"
-                visible
                 header="The task was called only when we decided to call it"
               />
               <ul>
