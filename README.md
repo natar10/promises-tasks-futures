@@ -17,12 +17,15 @@ Here you can find all the libraries used in this project.
 Typed functional programming in TypeScript
 
 - [fp-ts](https://gcanti.github.io/fp-ts/)
+- [Mostly adequate fp-ts](https://cjonas.gitbook.io/mostly-adequate-fp-ts/)
+- [fp-ts recipes](https://grossbart.github.io/fp-ts-recipes/#/)
 
 ## Effect
 
 Effect is a powerful TypeScript library designed to help developers easily create complex, synchronous, and asynchronous programs.
 
 - [Effect](https://effect.website/)
+- [Effect Crash Course](https://github.com/pigoz/effect-crashcourse)
 
 ## RxJs
 
